@@ -25,7 +25,7 @@ public class Blogs {
     private String date;
     private String type;
     private String bimage;
-
+    private int blikes;
     @Column(length = 50000)
     private String content;
 
@@ -92,6 +92,14 @@ public class Blogs {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public int getBlikes() {
+        return blikes;
+    }
+
+    public void setBlikes(int blikes) {
+        this.blikes = blikes;
     }
 
     @Override
