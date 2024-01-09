@@ -24,7 +24,8 @@
                             <p th:text="${b.date}"></p>
                         </div>
                         <div class="content__description text-black">
-                            <p th:text="'Written by '+${b.user.uname}"></p>
+                            <a href="#" th:href="@{'/user/view-user-profile/'+${b.user.id}}" style="text-decoration: none;">
+                            <p th:text="'Written by '+${b.user.uname}"></p></a>
                         </div>
                         <ul class="content__list">
                             <form class="text-center" th:action="@{'/user/view-blogs/'+${b.bid}}">

@@ -15,19 +15,16 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">mY Blog</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">BlogifyHub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="#" th:href="@{/user/index/0}">Home <span class="sr-only">(current)</span></a>
-        </li>
         
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="#"  tabindex="-1" aria-disabled="true"><span th:text="${user.uname}"></span></a>
         </li>
         <li class="nav-item">
@@ -46,9 +43,8 @@
         <a href="#" th:href="@{/user/view-my-blog/0}"  class="item"><i class="fa-brands fa-blogger"></i> View My Blogs</a>
         <a href="#" th:href="@{'/user/my_profile/'+${user.id}}"  class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
         <a href="#" th:href="@{/user/setting}" class="item"><i class="fas fa-user-cog"></i> Setting</a>
-        <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </div>
-      <div class="content mt-2">
+      <div class="content mt-5">
         <i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
         
         <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary text-center" role="alert" id="alertDiv">

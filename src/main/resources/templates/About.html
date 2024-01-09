@@ -1,13 +1,103 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Page</title>
+    <style>
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li:before {
+            content: '\2022'; /* Bullet point */
+            color: #007bff;
+            font-size: 1.2em;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
 </head>
+
 <body>
     <section>
-        <h1>This is About page</h1>
+        <div class="container ">
+            <div class="card mt-10">
+                <div class="card-body mt-5">
+                    <h1>Welcome to BlogifyHub - Where Your Stories Come to Life!</h1>
+
+                    <p><span class="highlight">📚 About Us:</span> At BlogifyHub, we believe in the power of words
+                        and the magic they create. Our platform provides an interactive and user-friendly space for
+                        writers, storytellers, and avid readers to connect, share, and explore a world of diverse
+                        perspectives.</p>
+
+                    <p>Welcome to our vibrant blogging community, where creativity meets expression! 🚀
+
+                        Dive into the heart of our virtual realm, a place crafted with passion for words and stories.
+                        Our blogging website is more than just a platform; it's an immersive experience tailored for
+                        writers, readers, and thinkers alike.</p>
+
+                    <ul>
+                        <li><span class="highlight">Seamless Journey from Thought to Blog:</span> At the core of our
+                            platform lies a user-friendly interface designed to empower your voice. Registration is a
+                            gateway to a world where your thoughts can flourish into captivating blogs. The process is
+                            swift, ensuring you can focus on what matters most—your content.</li>
+
+                        <li><span class="highlight">Interact, Connect, and Engage:</span> We believe that the beauty of
+                            blogging extends beyond solitary creation. Connect with a community of like-minded
+                            individuals through comments and likes. Your words resonate, and the interactions are a
+                            testament to the shared joy of storytelling. Scroll through the homepage, and you'll witness
+                            a lively tapestry of thoughts, adorned with visible likes and engaging comments.</li>
+
+                        <li><span class="highlight">Explore the World of Profiles:</span> Curiosity leads to
+                            connections. Discover the unique personalities behind the prose. Each user's profile is a
+                            window into their world—explore their published blogs, follow their journey, and foster a
+                            sense of camaraderie in our diverse community.</li>
+
+                        <li><span class="highlight">Elevated Visibility for Your Creations:</span> Your blogs take center
+                            stage on our homepage. The likes and comments you receive are not tucked away; they're
+                            proudly showcased, creating a dynamic tapestry of appreciation and discourse. Every
+                            interaction is a nod to the power of your words.</li>
+
+                        <li><span class="highlight">Craft Your Digital Identity:</span> Beyond the blogs, your profile is
+                            your canvas. Update it to reflect your evolving self. Share your passions, display your
+                            achievements, and let the world see the person behind the pen.</li>
+                    </ul>
+
+                    <p>Embark on this journey of literary exploration with us. Whether you're here to pen your
+                        thoughts, engage with fellow writers, or simply absorb the myriad of narratives—our platform is
+                        your canvas, and your story is the masterpiece. Welcome to a space where words thrive,
+                        connections flourish, and stories unfold. 📖✨</p>
+
+                    <p>Ready to embark on a journey of self-expression and connection? Join BlogifyHub
+                        today, and let your words resonate with the world!</p>
+
+                    <p class="highlight">📝 Start Writing Now! 🚀</p>
+                </div>
+            </div>
+        </div>
     </section>
 </body>
+
 </html>
