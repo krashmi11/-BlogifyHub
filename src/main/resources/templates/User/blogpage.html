@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+        
+        <div class="container">
+            <div class="my-card text-center">
+                <h1 style="font-family:cursive;">My Blog <i class="fa-solid fa-pen"></i></h1>
+                <input hidden type="text" th:value="${blog.bid}" name="bid"/>
+                <form action="#" th:object="${blog}" th:action="@{'/user/process-blog/'+${blog.bid}}" method="post">
+                    <label for="blogName">Blog Name:</label>
+                    <input th:value="${blog.bname}" type="text" id="blogName" name="bname" required>
+                    <div class="form-group mt-3">
+                        <textarea rows="10" class="form-control" id="mytextarea" name="content" placeholder="Start writing today......" ></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+        
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+       <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+      </script>
+    </section>
+</body>
+</html>

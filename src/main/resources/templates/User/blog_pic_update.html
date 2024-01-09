@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+       <div class="container">
+        
+            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary" role="alert" id="alertDiv">
+                <p th:text="${session.message.content}"></p>
+                                     
+            </div>
+            <th:block th:remove="${@sessionHelper.removeSession()}"></th:block>
+            <form th:object="${blog}" action="" th:action="@{'/user/process-blog-update-image/'+${blog.bid}}" enctype="multipart/form-data" method="post">
+                <input type="hidden" th:value="${blog.bid}" name="bid" />
+
+                <div class="form-group">
+                    <div class="mb-2">
+                        <img class="content__avatar" src="" th:src="@{/blog-images/{imageName}(imageName=${blog.bimage})}" />
+                    </div>
+                  
+                        <input type="file" class="form-control" name="profileImage"  id="imageurl" aria-describedby="emailHelp">
+                    </div>
+                <button type="submit" class="btn btn-primary"> Upload</button>
+            </form>
+        </div>
+      
+    </section>
+</body>
+</html>

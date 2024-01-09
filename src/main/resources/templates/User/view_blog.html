@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    
+</head>
+<body>
+    <section>
+        <div class="icon-container text-right mr-5">
+            <a th:href="@{'/user/index/0'}">
+                <i class="fa-solid fa-circle-left"></i>
+            </a>
+        </div>
+        <div class="container mt-3 mr-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" class="mr-0" th:action="@{'/user/like/'+${blogs.bid}}" method="post">
+                        <h1 id="b_id" class="text-center" th:text="${blogs.bname}"></h1>
+                        <input id="blogId" hidden type="text" th:value="${blogs.bid}" name="bid"/>
+                        <p th:utext="${blogs.content}"></p>
+                        <div class="d-flex talign-items-center justify-content-center">
+                            <div class="text-center mt-4 mb-4">
+                                <a id="toggleForm"  class="btn btn-warning" href="#" th:href="@{'/user/post-comment/'+${blogs.bid}+'/0'}">Add a Comment</a>
+                            </div>   
+                            <div class="text-center ml-2 mt-4 mb-4">
+                                <button type="submit" th:classappend="${like1 != null ? 'liked' : ''}" style="height: 2.4rem;"><i class="fas fa-heart"></i></button>
+                            </div> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>

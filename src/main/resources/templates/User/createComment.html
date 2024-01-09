@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+                <div id="commentForm">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="card shadow-0 border mt-3 mb-3">
+                          <div class="card-body p-4">
+                            <form action="#"th:object="${comment}" th:action="@{'/user/post-comment/'+${bid}+'/'+${comment.cid}}" method="post" style="margin-bottom: 2cm;">
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="addANote" name="Comment" class="form-control" placeholder="Type comment..." />
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn btn-primary btn-sm">Post</button>
+                                    </div>                                  
+                                </div>
+                            </form>
+                        <div th:each= "c:${commentList}">
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                    <div class="justify-content-between">
+                                        <div class="d-flex flex-row align-items-center">
+                                            <a href="#" th:href="@{'/user/view-user-profile/'+${c.user.id}}">
+                                                <img src="#" th:src="@{/blog-images/{imageName}(imageName=${c.user.imageurl})}" alt="avatar" width="25" height="25" /> 
+                                            </a>
+                            
+                                          <p class=" ml-3 mb-0 ms-2" th:text="${c.user.uname}"></p>
+                                          <div class="d-flex flex-row align-items-center ml-auto">
+                                            <!-- <p class="small text-muted mb-0">Upvote?</p>
+                                            <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i> -->
+                                            <a href="#" th:href="@{'/user/delete-comment/'+${c.blog.bid}+'/'+${c.cid}}" style="color:black"><i class="fa-solid fa-trash mx-2 fa-xs text-black"style="margin-top: -0.16rem;"></i>
+                                            </a>
+                                        </div>
+                                        </div>
+                                
+                                        <div class="flex-row align-items-center">
+                                            <p class="text-center small mt-2 mb-0" th:text="${c.Comment}"></p> 
+                                        </div>
+                                      </div> 
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination ml-3">
+                        <li class="page-item"><a class="page-link" th:if="${currentPage > 0}" th:href="@{'/user/post-comment/'+${bid}+'/'+${currentPage-1}}" href="#">Previous</a>
+                            <span th:if="${currentPage <= 0}" class="page-link">Previous</span>
+                        </li>
+                        <li th:each="i:${#numbers.sequence(1, totalPages)}" th:if="${totalPages > 0}" class="page-item">
+                            <a class="page-link" th:classappend="${currentPage == i-1 ? 'active' : ''}" th:href="@{'/user/post-comment/'+${bid}+'/'+${i-1}}" href="#"><span th:text="${i}"></span></a>
+                        </li>
+                        <li th:if="${currentPage+1 !=totalPages}" class="page-item"><a class="page-link"  th:href="@{'/user/post-comment/'+${bid}+'/'+${currentPage+1}}" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+       
+    </section>
+</body>
+</html>
+

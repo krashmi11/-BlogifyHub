@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>write Blog</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="my-card">
+                <div class="container text-center">
+                    <h1 class="mb-3">My Blog  <i class="fas fa-blog"></i></h1>
+                </div>                
+                <div class="my-card-body ">
+                        <form id="blogForm" th:object="${blog}" action="" th:action="@{/user/do-write}" method="post" enctype="multipart/form-data">
+                            <label for="blogName">Blog Name:</label>
+                            <input type="text" id="blogName" name="bname" required>
+                    
+                            <label for="blogDate">Date:</label>
+                            <input type="date" id="blogDate" name="date" required>
+                    
+                            <label for="blogType">Type:</label>
+                            <select id="blogType" name="type" >
+                                <option value="personal">Personal</option>
+                                <option value="tech">Tech</option>
+                                <option value="travel">Travel</option>
+                                <option value="travel">Food</option>
+                                <option value="travel">Health</option>
+                                <option value="travel">other</option>
+
+                                <!-- Add more options as needed -->
+                            </select>
+
+                            <label for="blogImage">Image:</label>
+                            <input type="file" id="blogImage" name="blogImage"/>
+
+                            <label for="other">Other(If not in the list):</label>
+                            <input type="text" name="type" id="other">
+                            <div class="text-center">
+                                <button class="btn btn-warning" type="submit">Start Writing</button>
+                            </div>
+                        </form>
+                    </div>
+            
+            </div>
+            </div>
+            
+
+    </section>
+</body>
+</html>

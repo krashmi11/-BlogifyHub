@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div th:each= "b:${blogs}">
+                <div class="home-page">
+                    <div class="content">
+                        <div class="content__cover mb-5">
+                            <img class="content__avatar" src="" th:src="@{/blog-images/{imageName}(imageName=${b.bimage})}" alt="profile_photo">
+                            <div class="content__avatar"></div>
+                        <div class="content__bull">
+                        </div>
+                        </div>
+                        <div class="content__title">
+                            <h1 th:text="${b.bname}"></h1><span th:text="${b.type}"></span>
+                        </div>
+                        <div class="content__description">
+                            <p th:text="${b.date}"></p>
+                        </div>
+                        <div class="content__description text-black">
+                            <p th:text="'Written by '+${b.user.uname}"></p>
+                        </div>
+                        <ul class="content__list">
+                            <form class="text-center" th:action="@{'/user/view-blogs/'+${b.bid}}">
+                                <div class="d-flex">
+                                    <button type="submit" class="btn btn-primary">View</button>
+                                    <i class="fas fa-heart ml-5 " style="color:red; font-size: 2em;"><span> </span><span th:text="${b.userlikes.size()}"></span></i>
+                                    <i class="fa-solid fa-comment ml-5 mr-2" style="font-size: 2em;"><span> </span><span th:text="${b.comments.size()}"></span></i>
+                                </div>
+                            </form>
+                        </ul>
+                    </div>
+                    <div class="bg">
+                        <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination ml-3 mt-3">
+                <li class="page-item">
+                    <a class="page-link" th:if="${currentPage > 0}" th:href="@{'/user/index/'+${currentPage-1}}" href="#">Previous</a>
+                    <span th:if="${currentPage <= 0}" class="page-link">Previous</span>
+                </li>                
+                <li th:classappend="${currentPage==i-1?'active':''}" th:each="i:${#numbers.sequence(1,totalPages)}" th:if="${totalPages > 0}" class="page-item"><a class="page-link" th:href="@{'/user/index/'+${i-1}}" href="#"><span th:text="${i}"></span></a></li>
+                <li th:if="${currentPage+1 !=totalPages}" class="page-item"><a class="page-link"  th:href="@{'/user/index/'+${currentPage+1}}" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </section>
+</body>
+</html>

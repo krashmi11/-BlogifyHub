@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org" th:fragment= "Layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet"  th:href="@{/css/style.css}"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <link rel="stylesheet"  th:href="@{/css/blogform.css}"> 
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+
+    <title th:text="${title}"> Base Tempelate</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">mY Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#" th:href="@{/user/index/0}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="#"  tabindex="-1" aria-disabled="true"><span th:text="${user.uname}"></span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" th:href="@{'/logout'}" tabindex="-1" aria-disabled="true">Logout</a>
+        </li>
+        
+        </ul>
+    </div>
+    </nav>
+
+    <!-- responsive sidebar -->
+    <div class="sidebar">
+        <span onclick="toggleSidebar()" class="crossBtn">&times;</span>
+        <a href="#" th:href="@{/user/index/0}" class="item"><i class="fas fa-home"></i> Home</a>
+        <a href="#" th:href="@{/user/write}" class="item"><i class="fa-solid fa-pen"></i> Write Blog</a>
+        <a href="#" th:href="@{/user/view-my-blog/0}"  class="item"><i class="fa-brands fa-blogger"></i> View My Blogs</a>
+        <a href="#" th:href="@{'/user/my_profile/'+${user.id}}"  class="item"><i class="fas fa-user-circle"></i> Your Profile</a>
+        <a href="#" th:href="@{/user/setting}" class="item"><i class="fas fa-user-cog"></i> Setting</a>
+        <a href="#" th:href="@{/logout}" class="item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+      <div class="content mt-2">
+        <i onclick="toggleSidebar()" class="fas fa-bars mt-3"></i>
+        
+        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary text-center" role="alert" id="alertDiv">
+          <span th:text="${session.message.content}"></span>    
+        </div>        
+        <th:block th:remove="${@sessionHelper.removeSession()}"></th:block>
+
+        <div th:replace="${content}"></div>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

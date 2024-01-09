@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+        <div class="container ml-4">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card ">
+                        <div class="card-body">
+                            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary" role="alert" id="alertDiv">
+                                <p th:text="${session.message.content}"></p>
+                                                     
+                            </div>
+                            <th:block th:remove="${@sessionHelper.removeSession()}"></th:block>
+                        <div class="img-container text-center">
+                            <img src="#" th:src="@{'/images/written-paper.png'}"/>
+                        </div>
+                        <h1 class="text-center">Register Here!!</h1>
+                        <form class="mt-5" action="" th:action="@{/do-register}" th:object="${user}" method="post" enctype="multipart/form-data">
+                    
+                            <div class="form-group">
+                                <label for="username">Enter your name</label>
+                                <input type="text" class="form-control" name="uname" required id="uname" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="imageurl">Upload picture</label>
+                                <input type="file" class="form-control" name="profileImage"  id="imageurl" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="DOB" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" name="email" required id="email" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number</label>
+                                <input type="number" class="form-control" name="mobile" id="mobile" aria-describedby="emailHelp">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" required id="passwords">
+                            </div>
+                            <div class="form-group">
+                                <label for="about">About</label>
+                                <textarea rows="4" class="form-control" id="about" name="userdesc" placeholder="Something about yourself!" th:value="${user.userdesc}" ></textarea>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="agreement" id="agree">
+                                <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Register</button>
+                                <button type="reset" class="btn btn-warning">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

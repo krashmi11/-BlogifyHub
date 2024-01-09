@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+        <div class="my-card text-center mt-3 mb-3 ml-5 mr-5">
+            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert alert-primary mt-3 mb-3 ml-5 mr-5" role="alert" id="alertDiv">
+                <p th:text="${session.message.content}"></p>                    
+            </div>
+            <h1 class="mb-3">My Blog  <i class="fas fa-blog"></i></h1>
+            <div class="mb-5" th:each= "b:${blog}">
+                <div class="card-body" style="background: blanchedalmond;">
+                    <div class="content__cover mb-5">
+                        <a href="#" th:href="@{'/user/update-blog-image/'+${b.bid}}">
+                            <img class="content__avatar rounded-circle" src="" th:src="@{/blog-images/{imageName}(imageName=${b.bimage})}" alt="profile_photo">
+                        </a>
+                      <div class="content__bull"><span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                    <h5 class="card-title text-center text-secondary" th:text="${b.bname}"></h5>
+                    <p class="card-text">Blog ID: <span th:text="${b.bid}"></span></p>
+                    <p class="card-text">Type: <span th:text="${b.type}"></span></p>
+                    <p class="card-text">Date: <span th:text="${b.date}"></span></p>
+
+                
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <form class="text-center mt-3" th:action="@{'/user/view-my-blogs-content/'+${b.bid}}" method="post">
+                                <button type="submit" class="btn btn-primary btn-sm">View</button>
+                            </form>
+                        </div>
+                        <div class="d-flex align-items-center"> <!-- Added d-flex and align-items-center -->
+                            <form class="text-center mt-3 ml-2" th:action="@{'/user/update_blog/'+${b.bid}}" method="post"> 
+                                <a href="#" th:href="@{'/user/delete/'+${b.bid}}" class="btn btn-danger btn-sm">Delete</a>
+                                <button type="submit" class="btn btn-warning btn-sm ml-2">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination ml-3">
+                    <!-- Previous Page Link -->
+                    <li class="page-item">
+                        <a class="page-link" th:if="${currentPage > 0}" th:href="@{'/user/view-my-blog/'+${currentPage-1}}" href="#">Previous</a>
+                        <span th:if="${currentPage <= 0}" class="page-link">Previous</span>
+                    </li>
+            
+                    <!-- Page Numbers -->
+                    <li th:classappend="${currentPage == i-1 ? 'active' : ''}" th:if="${totalPages > 0}" th:each="i:${#numbers.sequence(1, totalPages)}" class="page-item">
+                        <a class="page-link" th:href="@{'/user/view-my-blog/'+${i-1}}" href="#"><span th:text="${i}"></span></a>
+                    </li>
+            
+                    <!-- Next Page Link -->
+                    <li th:if="${currentPage + 1 < totalPages}" class="page-item">
+                        <a class="page-link" th:href="@{'/user/view-my-blog/'+${currentPage+1}}" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div> 
+
+        
+    </section>
+</body>
+</html>

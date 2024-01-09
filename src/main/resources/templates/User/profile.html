@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" th:replace="~{User/Base::Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    <section>
+      <div class="container">
+        <div class="profile-page">
+          <div class="content">
+            <div class="content__cover mb-5">
+                <img class="content__avatar" src="" th:src="@{/blog-images/{imageName}(imageName=${user.imageurl})}" alt="profile_photo">
+              <div class="content__bull"><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="content__title">
+              <a href="#" th:href="@{'/user/upload-picture/'+${user.id}}">
+                <i class="fa fa-pencil mb-2" aria-hidden="true"></i>
+              </a>
+              <h1 th:text="${user.uname}"></h1><span th:text="${user.email}"></span>
+            </div>
+            <div class="content__description">
+              <p th:text="${user.userdesc}"></p>
+            </div>
+            <ul class="content__list">
+              <li><span th:text="${likes}"></span>Likes</li>
+              <li><span th:text=${bsize}></span>Blogs</li>
+              <li><span th:text="${getComment}">21</span>Comments</li>
+            </ul>
+          </div>
+          <div class="bg">
+            <div><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+    </section>
+</body>
+</html>
